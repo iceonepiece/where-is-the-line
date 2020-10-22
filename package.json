@@ -1,0 +1,14 @@
+{
+  "name": "where-is-the-line",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/iceonepiece/where-is-the-line.git",
+  "author": "iceonepiece <iceonepiece@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
