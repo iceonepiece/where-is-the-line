@@ -1,3 +1,2 @@
-const { start } = require('./server');
-
-(async () => start())();
+require('./envConfig');
+require('./server');
