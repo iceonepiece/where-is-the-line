@@ -2,6 +2,9 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 
 // create LINE SDK config from env variables
+console.log(process.env.CHANNEL_ACCESS_TOKEN)
+console.log(process.env.CHANNEL_SECRET)
+
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET,
@@ -34,7 +37,7 @@ function handleEvent(event) {
   }
 
   // create a echoing text message
-  const echo = { type: 'text', text: event.message.text };
+  const echo = { type: 'text', text: event.message.text.toUpperCase() };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
