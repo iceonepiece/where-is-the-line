@@ -1,10 +1,6 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 
-// create LINE SDK config from env variables
-console.log(process.env.CHANNEL_ACCESS_TOKEN)
-console.log(process.env.CHANNEL_SECRET)
-
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET,
@@ -17,8 +13,14 @@ const client = new line.Client(config);
 // about Express itself: https://expressjs.com/
 const app = express();
 
-// register a webhook handler with middleware
-// about the middleware, please refer to doc
+const myLiffId = process.env.MY_LIFF_ID;
+
+app.use(express.static('public'));
+
+app.get('/send-id', function(req, res) {
+    res.json({id: myLiffId});
+});
+
 app.post('/callback', line.middleware(config), (req, res) => {
   Promise
     .all(req.body.events.map(handleEvent))
@@ -37,7 +39,7 @@ function handleEvent(event) {
   }
 
   // create a echoing text message
-  const echo = { type: 'text', text: event.message.text.toUpperCase() };
+  const echo = { type: 'text', text: event.message.text };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
