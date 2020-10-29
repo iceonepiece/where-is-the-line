@@ -60,7 +60,7 @@ function handleEvent(event) {
     contents: data,
   };
 
-  return client.replyMessage(message, echo);
+  return client.replyMessage(event.replyToken, message);
 }
 
 // listen on port
