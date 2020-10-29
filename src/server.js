@@ -54,7 +54,13 @@ function handleEvent(event) {
   };
 
   // use reply API
-  return client.replyMessage(data, echo);
+  const message = {
+    type: 'flex',
+    altText: 'this is a flex message',
+    contents: data,
+  };
+
+  return client.replyMessage(message, echo);
 }
 
 // listen on port
