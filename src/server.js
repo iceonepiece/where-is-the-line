@@ -1,6 +1,8 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 
+const data = require('./carousel');
+
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET,
@@ -39,7 +41,7 @@ function handleEvent(event) {
   }
 
   // create a echoing text message
-  const echo = { 
+  const echo = {
     type: 'text',
     text: `$ ${event.message.text}`,
     emojis: [
@@ -52,7 +54,7 @@ function handleEvent(event) {
   };
 
   // use reply API
-  return client.replyMessage(event.replyToken, echo);
+  return client.replyMessage(data, echo);
 }
 
 // listen on port
