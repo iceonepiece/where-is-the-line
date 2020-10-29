@@ -39,7 +39,17 @@ function handleEvent(event) {
   }
 
   // create a echoing text message
-  const echo = { type: 'text', text: event.message.text };
+  const echo = { 
+    type: 'text',
+    text: `$ ${event.message.text}`,
+    emojis: [
+      {
+        "index": 0,
+        "productId": "5ac1bfd5040ab15980c9b435",
+        "emojiId": "001"
+      },
+    ],
+  };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
